@@ -50,6 +50,33 @@ var Block = function() {
 		        this.southeast()];
 	};
 
+	// RELATIONAL PROPERTIES
+	this.seeNorth = function() {
+		if ( this.north() ) return true;
+		return false;
+	};
+	this.seeSouth = function() {
+		if ( this.south() ) return true;
+		return false;
+	};
+	this.seeEast = function() {
+		if ( this.east() ) return true;
+		return false;
+	};
+	this.seeWest = function() {
+		if ( this.west() ) return true;
+		return false;
+	};
+	this.seeAbove= function() {
+		if ( this.above() ) return true;
+		return false;
+	};
+	this.seeBelow = function() {
+		if ( this.below() ) return true;
+		return false;
+	};
+
+
 	// ACTIONS ON INTRINSICS
 	this.moveNorth = function() {
 		this.z += 1;
@@ -73,7 +100,7 @@ var Block = function() {
 	// ACTIONS on ENVIRONMENT
 
 	this.makeBlock = function() {
-			// ???
+		State.addBlock([], this.x, this.y, this.z, "0x000000");
 	};
 
 };

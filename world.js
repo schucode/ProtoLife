@@ -104,25 +104,25 @@ var addBlockRequest = function( locality, key ) {
 			color = "0x000000";		// black
 			break;
 		case 50: 								// numeral 2
-			rules = r1;						// walk forward
+			rules = r2;						// walk forward
 			color = "0x003300";		// dark green				
 			break;
-		case 51: 								// numeral 3
-			// rules = someRules;	// undefined
-			 color = "0x006600";	// less dark green						
-			break;
-		case 52: 								// numeral 4
-			// rules = someRules;	// undefined
-			 color = "0x009900";	// etc.		
-			break;
-		case 53: 								// numeral 5
-			// rules = someRules;	// undefined
-			 color = "0x00CC00";							
-			break;
-		case 54: 								// numeral 6
-			// rules = someRules;	// undefined
-			 color = "0x00ff00";							
-			break;
+		// case 51: 								// numeral 3
+		// 	rules = r3;	// undefined
+		// 	color = "0x006600";	// less dark green						
+		// 	break;
+		// case 52: 								// numeral 4
+		// 	 rules = r3;	// undefined
+		// 	 color = "0x009900";	// etc.		
+		// 	break;
+		// case 53: 								// numeral 5
+		// 	// rules = someRules;	// undefined
+		// 	 color = "0x00CC00";							
+		// 	break;
+		// case 54: 								// numeral 6
+		// 	// rules = someRules;	// undefined
+		// 	 color = "0x00ff00";							
+		// 	break;
 		default:
 			console.log("no block type");
 			return false;
@@ -220,7 +220,6 @@ var ConvertToMesh = {
 										mesh.position.x = convert;
 									},
 									z: function(mesh, value) {
-										console.log("I suck");
 										var convert = value*scale - (((depth-1)/2)*scale);
 										mesh.position.z = convert;
 									},

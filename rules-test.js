@@ -44,7 +44,7 @@ var r1 = [
 }
 ];
 
-
+// tested successfully
 var r2 = [
 { 
 	conditions:["north/state=0"], 
@@ -55,31 +55,31 @@ var r2 = [
 
 var r3 = [
 { 
-	conditions:["north.north/state=0"], 
+	conditions:["state=0"], 
  	outcomes:["moveEast"]
 }
 ];
 
 
-var r4 = [
-{ 
-	conditions:[">5/neighbors/state=0"], 
- 	outcomes:["moveWest"]
-}
-];
+// var r4 = [
+// { 
+// 	conditions:[">5/neighbors/state=0"], 
+//  	outcomes:["moveWest"]
+// }
+// ];
 
 
-var r4 = [
-{ 
-	conditions:["<2/neighbors/state=0"], 
- 	outcomes:["moveUp"]
-}
-];
+// var r4 = [
+// { 
+// 	conditions:["<2/neighbors/state=0"], 
+//  	outcomes:["moveUp"]
+// }
+// ];
 
 
-var r5 = [
-{ 
-	conditions:["state=0", "north/state=0", "north.north/state=0", "<2/neighbors/state=0"], 
- 	outcomes:["moveDown"]
-}
-];
+// var r5 = [
+// { 
+// 	conditions:["state=0", "north/state=0", "north.north/state=0", "<2/neighbors/state=0"], 
+//  	outcomes:["moveDown"]
+// }
+// ];

@@ -14,7 +14,6 @@
 			if (block.changeLog != undefined) {
 		 		for (var change in block.changeLog) {
 		 			if (block[block.changeLog[change]] instanceof Function) {
-		 				console.log(block.z);
 		 				block[block.changeLog[change]]();					 // implement behavior
 		 			} else {
 		 				block[change] = block.changeLog[change];		// change property
@@ -37,7 +36,6 @@
 		var getRule = function() {
 			for (var i in rules)
 				if (  satisfiedRule(rules[i]) ) return rules[i]
-			return undefined;
 		}
 
 		// returns true if the block satisfies every condition of the rule
@@ -58,6 +56,8 @@
 		// receives a string of form "target/poperty-value/optional quantifier"
 		var satisfiedCondition = function(condition) {
 			var target = getTarget(condition);
+			console.log(target);
+			if (target == undefined) return false;
 			if (target instanceof Array) 
 				return evaluateCollection(target, condition);
 			else
@@ -68,7 +68,7 @@
 		var evaluateBlock = function(single_block, condition) {
 			var property = getProperty(condition);
 			var required_value = getRequiredPropertyValue(condition);
-			return (single_block[property] == required_value);
+			return (single_block[property] == required_value)
 		}
 
 		// returns true if a collection satisfies a condition
@@ -122,7 +122,7 @@
 		var getActualQuantity = function(collection, property, value) {
 			var counter = 0;
 			for (var i in collection) {
-				if (!(collection[i]) && collection[i][property] == value) counter++;
+				if ((collection[i]) && collection[i][property] == value) counter++;
 			return counter;
 			}
 		}
@@ -183,7 +183,8 @@
 			if (relation_array[0] != "") {
 				for (var i in relation_array) {
 					var relation = relation_array[i];
-					pointer = pointer[relation]();
+					pointer = pointer[relation](); // may be undefined
+					if (pointer == undefined) return undefined;
 				}
 			}
 			return pointer;
