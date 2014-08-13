@@ -163,6 +163,33 @@ var Test = function() {
 	}
 	];
 
+	// MAKE BOXES TEST
+
+	this.r15 = [
+	{ 
+		conditions:["state=0"], 
+	 	outcomes:["makeBlock", "moveWest"]
+	}
+	];
+
+	this.r16 = [
+	{ 
+		conditions:["state=0"], 
+	 	outcomes:["makeBlock", "moveUp"]
+	}
+	];
+
+	this.r16 = [
+	{ 
+		conditions:["state=0", "seeSouth=true"], 
+	 	outcomes:["moveSouth"]
+	},
+	{ 
+		conditions:["state=0", "seeSouth=false"], 
+	 	outcomes:["moveSouth"]
+	}
+	];
+
 	// this.r5 = [
 	// { 
 	// 	conditions:["state=0", "north/state=0", "north.north/state=0", "<2/neighbors/state=0"], 

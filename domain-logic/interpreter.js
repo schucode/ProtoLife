@@ -79,7 +79,7 @@
 			var property = getProperty(condition);
 			var required_value = getRequiredPropertyValue(condition);
 			if (single_block[property] instanceof Function) 
-				return single_block[property]();
+				return single_block[property](); // for seeSouth, e.g.
 			else 
 				return (single_block[property] == required_value)
 		}
