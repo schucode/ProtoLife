@@ -20,7 +20,7 @@
 		 				updateIntrinsic(change);		// change property
 				}
 			}
-			console.log(block);
+			//console.log(block);
 		}
 
 		var performAction = function(change) {
@@ -93,6 +93,7 @@
 			var required_quantity = getRequiredQuantity(condition); 
 			var actual_quantity = getActualQuantity(collection, property, required_value);
 			var comparison = getComparison(condition);
+			debugger;
 
 			return makeComparison(comparison, actual_quantity, required_quantity);
 		}
@@ -136,7 +137,9 @@
 		var getActualQuantity = function(collection, property, value) {
 			var counter = 0;
 			for (var i in collection) {
+
 				if ((collection[i]) && collection[i][property] == value) counter++;
+				
 			return counter;
 			}
 		}

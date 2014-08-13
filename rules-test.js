@@ -191,12 +191,14 @@ var Test = function() {
 	}
 	];
 
-	// this.r5 = [
-	// { 
-	// 	conditions:["state=0", "north/state=0", "north.north/state=0", "<2/neighbors/state=0"], 
-	//  	outcomes:["moveDown"]
-	// }
-	// ];
+	// COLLECTIONS TESTING
+
+	this.r18 = [
+	{ 
+		conditions:["state=0", "=2/neighbors/state=0"], 
+	 	outcomes:["moveUp"]
+	}
+	];
 }
 
 var test = new Test(); 
