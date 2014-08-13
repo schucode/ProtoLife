@@ -36,50 +36,88 @@ All rules of form
 
 // RULES //
 
-// tested successful
-var r1 = [ 
-{ 
-	conditions:["state=0"], 
- 	outcomes:["moveNorth"]
+/*
+satisfied and unsatisfied
+*/
+
+
+
+// tested
+
+var Test = function() {
+
+	// INTRINSIC RULES
+
+	//tested
+	this.r1 = [ 
+	{ 
+		conditions:["state=0"], 
+	 	outcomes:["moveNorth"]
+	}
+	];
+
+	// tested
+	this.r2 = [
+	{ 
+		conditions:["state=0"], 
+	 	outcomes:["state=1"]
+	}
+	];
+
+	// tested
+	this.r3 = [
+	{ 
+		conditions:["state=1"], 
+	 	outcomes:["state=2"]
+	}
+	];
+
+	// tested
+	this.r4 = [
+	{ 
+		conditions:["state=0"], 
+	 	outcomes:["moveNorth", "moveNorth"]
+	}
+	];
+
+	// tested
+	this.r5 = [
+	{ 
+		conditions:["state=0"], 
+	 	outcomes:["moveNorth", "moveUp"]
+	}
+	];
+
+	this.r6 = [
+	{ 
+		conditions:["state=0"], 
+	 	outcomes:["state=1"]
+	}, 
+	{ 
+		conditions:["state=1"], 
+	 	outcomes:["state=2"]
+	},
+	{ 
+		conditions:["state=2"], 
+	 	outcomes:["moveUp"]
+	},
+	];	
+
+	// RELATION RULES
+
+	this.r7 = [
+	{ 
+		conditions:["north/state=0"], 
+	 	outcomes:["moveUp"]
+	}
+	];
+
+	// this.r5 = [
+	// { 
+	// 	conditions:["state=0", "north/state=0", "north.north/state=0", "<2/neighbors/state=0"], 
+	//  	outcomes:["moveDown"]
+	// }
+	// ];
 }
-];
 
-// tested successfully
-var r2 = [
-{ 
-	conditions:["north/state=0"], 
- 	outcomes:["moveSouth"]
-}
-];
-
-
-var r3 = [
-{ 
-	conditions:["state=0"], 
- 	outcomes:["moveEast"]
-}
-];
-
-
-// var r4 = [
-// { 
-// 	conditions:[">5/neighbors/state=0"], 
-//  	outcomes:["moveWest"]
-// }
-// ];
-
-
-// var r4 = [
-// { 
-// 	conditions:["<2/neighbors/state=0"], 
-//  	outcomes:["moveUp"]
-// }
-// ];
-
-
-// var r5 = [
-// { 
-// 	conditions:["state=0", "north/state=0", "north.north/state=0", "<2/neighbors/state=0"], 
-//  	outcomes:["moveDown"]
-// }
-// ];
+var test = new Test(); 

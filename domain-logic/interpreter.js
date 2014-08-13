@@ -11,15 +11,26 @@
 		}
 
 		this.executeOutcome = function() {
-			if (block.changeLog != undefined) {
-		 		for (var change in block.changeLog) {
-		 			if (block[block.changeLog[change]] instanceof Function) {
-		 				block[block.changeLog[change]]();					 // implement behavior
-		 			} else {
-		 				block[change] = block.changeLog[change];		// change property
-		 			}
+			if (block.changeLog) {
+		 		for (var i in block.changeLog) {
+		 			var change = block.changeLog[i];
+		 			if (block[change] instanceof Function) 
+		 				performAction(change);					 // implement behavior
+		 			else 
+		 				updateIntrinsic(change);		// change property
 				}
 			}
+			console.log(block);
+		}
+
+		var performAction = function(change) {
+			block[change]();
+		}
+
+		var updateIntrinsic = function(change) {
+			var property = getProperty(change);
+			var value = getRequiredPropertyValue(change);
+			block[property] = value;
 		}
 
 		this.logOutcome = function() {
@@ -56,7 +67,6 @@
 		// receives a string of form "target/poperty-value/optional quantifier"
 		var satisfiedCondition = function(condition) {
 			var target = getTarget(condition);
-			console.log(target);
 			if (target == undefined) return false;
 			if (target instanceof Array) 
 				return evaluateCollection(target, condition);
