@@ -10,6 +10,19 @@
 			rules = some_block.rules;
 		}
 
+		this.executeOutcome = function() {
+			if (block.changeLog != undefined) {
+		 		for (var change in block.changeLog) {
+		 			if (block[block.changeLog[change]] instanceof Function) {
+		 				console.log(block.z);
+		 				block[block.changeLog[change]]();					 // implement behavior
+		 			} else {
+		 				block[change] = block.changeLog[change];		// change property
+		 			}
+				}
+			}
+		}
+
 		this.logOutcome = function() {
 			block.changeLog = getOutcome();
 		}

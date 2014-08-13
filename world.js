@@ -104,7 +104,7 @@ var addBlockRequest = function( locality, key ) {
 			color = "0x000000";		// black
 			break;
 		case 50: 								// numeral 2
-			rules = r1;		// undefined
+			rules = r1;						// walk forward
 			color = "0x003300";		// dark green				
 			break;
 		case 51: 								// numeral 3
@@ -220,6 +220,7 @@ var ConvertToMesh = {
 										mesh.position.x = convert;
 									},
 									z: function(mesh, value) {
+										console.log("I suck");
 										var convert = value*scale - (((depth-1)/2)*scale);
 										mesh.position.z = convert;
 									},

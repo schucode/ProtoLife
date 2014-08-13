@@ -38,7 +38,7 @@ All rules of form
 
 var r1 = [
 { 
-	conditions:["state=0", "north.north/state=0", "<2/neighbors/state=2"], 
- 	outcomes:["moveForward"]
+	conditions:["state=0"], 
+ 	outcomes:["moveNorth"]
 }
 ];
