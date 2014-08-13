@@ -78,9 +78,10 @@
 		var evaluateBlock = function(single_block, condition) {
 			var property = getProperty(condition);
 			var required_value = getRequiredPropertyValue(condition);
-			if (single_block[property] instanceof Function) 
-				return single_block[property](); // for seeSouth, e.g.
-			else 
+			if (single_block[property] instanceof Function) {
+				var actual_value = single_block[property](); // for seeSouth, e.g.
+				return (String(actual_value) == required_value)
+			} else 
 				return (single_block[property] == required_value)
 		}
 

@@ -109,21 +109,21 @@ var Test = function() {
 	// tested
 	this.r7 = [
 	{ 
-		conditions:["state=0", "seeNorth"], 
+		conditions:["state=0", "seeNorth=true"], 
 	 	outcomes:["moveUp"]
 	}
 	];
 
 	this.r8 = [
 	{ 
-		conditions:["seeSouth"], 
+		conditions:["seeSouth=true"], 
 	 	outcomes:["moveUp"]
 	}
 	];
 
 	this.r9 = [
 	{ 
-		conditions:["seeSouth"], 
+		conditions:["seeSouth=true"], 
 	 	outcomes:["state=2", "moveEast"]
 	}
 	];
@@ -158,7 +158,7 @@ var Test = function() {
 
 	this.r14 = [
 	{ 
-		conditions:["north.north.west/state=0", "seeSouth"], 
+		conditions:["north.north.west/state=0", "seeSouth=true"], 
 	 	outcomes:["moveUp"]
 	}
 	];
@@ -179,14 +179,15 @@ var Test = function() {
 	}
 	];
 
-	this.r16 = [
-	{ 
-		conditions:["state=0", "seeSouth=true"], 
-	 	outcomes:["moveSouth"]
-	},
+	// MAKES THE adidas symbol
+	this.r17 = [
 	{ 
 		conditions:["state=0", "seeSouth=false"], 
 	 	outcomes:["moveSouth"]
+	},
+	{ 
+		conditions:["state=0", "seeSouth=true"], 
+	 	outcomes:["makeBlock", "moveUp"]
 	}
 	];
 
