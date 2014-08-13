@@ -114,6 +114,55 @@ var Test = function() {
 	}
 	];
 
+	this.r8 = [
+	{ 
+		conditions:["seeSouth"], 
+	 	outcomes:["moveUp"]
+	}
+	];
+
+	this.r9 = [
+	{ 
+		conditions:["seeSouth"], 
+	 	outcomes:["state=2", "moveEast"]
+	}
+	];
+
+	this.r10 = [
+	{ 
+		conditions:["north/state=0"], 
+	 	outcomes:["moveEast"]
+	}
+	];
+
+	this.r11 = [
+	{ 
+		conditions:["north/state=0"], 
+	 	outcomes:["moveEast"]
+	}
+	];
+
+	this.r12 = [
+	{ 
+		conditions:["north.east/state=0"], 
+	 	outcomes:["moveEast"]
+	}
+	];
+
+	this.r13 = [
+	{ 
+		conditions:["north.north.west/state=0"], 
+	 	outcomes:["moveEast"]
+	}
+	];
+
+	this.r14 = [
+	{ 
+		conditions:["north.north.west/state=0", "seeSouth"], 
+	 	outcomes:["moveUp"]
+	}
+	];
+
 	// this.r5 = [
 	// { 
 	// 	conditions:["state=0", "north/state=0", "north.north/state=0", "<2/neighbors/state=0"], 
