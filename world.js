@@ -22,6 +22,7 @@ scene.add(center);
 
 
 
+
 ////////////////////////// WORLD CREATION //////////////////////////
 
 // CONSTANTS
@@ -38,7 +39,7 @@ var localityProperties = { color: 0xFF0000, 			// gray
 
 // VARIABLES
 
-var openLocalities = [];				// may not need
+var openLocalities = [];				
 var localities = [];
 var thingsInTheWorld = [];
 
@@ -86,48 +87,73 @@ var setUpGraphics = function() {
 	delineateGrid();
 }
 
+
+
 ////////////////////////// WORLD CHANGES //////////////////////////
 
 
 var addBlockRequest = function( locality, key ) {
 	var x = locality[0];
 	var z = locality[1];
-	var DNA;
 	var rules;
 	var color;
 
 	switch(key) {
-		case 49: // numeral 1
-			rules = []; // dumb block
-			color = "0x000000";
-			State.addBlock(rules, color, x, 0, z);
+		case 49: 								// numeral 1
+			rules = []; 					// dumb block
+			color = "0x000000";		// black
 			break;
-		case 50: // numeral 2
-			rules = someRules;	
-			color = "0x00ff00";							
-			State.addBlock(rules, color, x, 0, z);
+		case 50: 								// numeral 2
+			rules = r1;		// undefined
+			color = "0x003300";		// dark green				
+			break;
+		case 51: 								// numeral 3
+			// rules = someRules;	// undefined
+			 color = "0x006600";	// less dark green						
+			break;
+		case 52: 								// numeral 4
+			// rules = someRules;	// undefined
+			 color = "0x009900";	// etc.		
+			break;
+		case 53: 								// numeral 5
+			// rules = someRules;	// undefined
+			 color = "0x00CC00";							
+			break;
+		case 54: 								// numeral 6
+			// rules = someRules;	// undefined
+			 color = "0x00ff00";							
 			break;
 		default:
 			console.log("no block type");
 			return false;
 			break;
 	}
+	State.addBlock(rules, x, 0, z, color);
 	translateState(State);
 }
 
 var deleteBlockRequest = function( locality, key  ) {
 	if (key == 68) {
-		deleteBlock( locality );
+		var x = locality[0];
+		var z = locality[1];
+		State.deleteBlockByPosition( x, 0, z );
 		deleteWorldMember( locality );
 		translateState(State);
 	}
 }
 
 
+
 ////////////////////////// WORLD INPUT //////////////////////////
 
 
 var UX = {
+
+	key: undefined,
+
+	setKey: function(keyCode) {
+		UX.key = keyCode;
+	},
 
 	// For eliminating redundant code in Ux methods
 	preface: function(e) {
@@ -155,7 +181,7 @@ var UX = {
 		intersects = raycaster.intersectObjects( localities );
 		if (intersects.length > 0) {
 			var locality = intersects[0].object.name; // name is position
-			addBlockRequest( locality, key );
+			addBlockRequest( locality, UX.key );
 		}
 	},
 
@@ -163,39 +189,32 @@ var UX = {
 		var raycaster = UX.preface(e);
 		intersects = raycaster.intersectObjects( thingsInTheWorld );
 		if (intersects.length > 0) {
-			var locality = intersects[0].object.name; // name is position
-			deleteBlockRequest( locality, key );
+			//var locality = intersects[0].object.name; // name is position
+			var locality = [intersects[0].object.block.x, intersects[0].object.block.z];
+			deleteBlockRequest( locality, UX.key );
 		}
 	}
 
 }
 
-var key;
-
 window.addEventListener( 'mousemove', UX.helpSelect, false );
+
 window.addEventListener( 'click', UX.clickGrid, false );
+
 window.addEventListener( 'click', UX.clickBlocks, false );
-window.addEventListener( 'keydown', function(e) {
-	key = e.keyCode;
-}, false);
-window.addEventListener( 'keyup', function(e) {
-	key = undefined;
-}, false);
+
+window.addEventListener( 'keydown', function(e) {UX.setKey(e.keyCode)}, false );
+
+window.addEventListener( 'keyup',  UX.setKey(undefined), false);
+
+
+
 
 ////////////////////////// STATE TRANSLATION //////////////////////////
 
 // Translation of State language into Mesh Lanuage
 
-var ConvertDNAtoMesh = { 
-									alive: function(mesh, value) {
-										if (value ){ // if living 
-											mesh.material.visible = true;
-											//mesh.material.color.setHex( 0xFF0000 ); // red
-										} else {  // if dead
-											mesh.material.visible = false;
-											//mesh.material.color.setHex( 0x00FF00 ); // green
-										}
-									},
+var ConvertToMesh = { 
 									x: function(mesh, value) {
 										var convert = value*scale - (((width-1)/2)*scale);
 										mesh.position.x = convert;
@@ -209,7 +228,6 @@ var ConvertDNAtoMesh = {
 										mesh.position.y = convert;
 									},
 									color: function(mesh, value) {
-										console.log("ugh?");
 										mesh.material.color.setHex( value );
 									}
 }
@@ -225,11 +243,11 @@ var createWorldBlock = function(block) {
 	scene.add(mesh);
 }
 
-var changeWorldBlock = function(block) {
+var updateWorldBlock = function(block) {
 	for (var property in block) {
 		var value = block[property];
-		if (ConvertDNAtoMesh[property] != undefined) {
-			ConvertDNAtoMesh[property](block.rep, value);
+		if (ConvertToMesh[property] != undefined) {
+			ConvertToMesh[property](block.rep, value);
 		}
 	}
 }
@@ -239,7 +257,7 @@ var translateBlock = function(block) {
 	if (block.rep == undefined) {
 		createWorldBlock(block);
 	}
-	changeWorldBlock(block);
+	updateWorldBlock(block);
 }
 
 // Updates graphical representation according to the state description
@@ -259,7 +277,8 @@ var unpopulateWorld = function() {
 var deleteWorldMember = function( locality ) {
 	var thingsLocal;
 	for (var i=0; i < thingsInTheWorld.length; i++) {
-		if (thingsInTheWorld[i].name == locality) {
+		if (thingsInTheWorld[i].block.x === locality[0]
+			  && thingsInTheWorld[i].block.z === locality[1]) {
 			thingsLocal = i;
 			scene.remove(thingsInTheWorld[i]);
 			break;
@@ -277,6 +296,6 @@ render = function () {
 };
 
 
-//setUpGraphics();
+setUpGraphics();
 
-//render();
+render();

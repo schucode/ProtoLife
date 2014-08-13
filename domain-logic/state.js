@@ -11,27 +11,27 @@ var State = {
 		block.x = x;
 		block.y = y;
 		block.z = z;
-		this.population.push(block);
+		State.population.push(block);
 	},
 
 	retrieveBlockByPosition: function(x, y, z) {
-		for (var i=0; i<this.population.length; i++) {
-			var block = this.population[i];
+		for (var i in State.population) {
+			var block = State.population[i];
 			if (block.x == x && block.y == y && block.z == z) 
 				return block; 
 		}
 	},
 
-	updateBlock: function() {
-
-	},
-
-	deleteBlock: function() {
-
-	},
-
-	deleteAllBlocks: function() {
-
+	deleteBlockByPosition: function(x, y, z) {
+		var loc;
+		for (var i in State.population) {
+			var block = State.population[i];
+			if (block.x == x && block.y == y && block.z == z) {
+				loc = i;
+				break;
+			}
+		}
+		State.population.splice(loc, 1);
 	}
 
 }

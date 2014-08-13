@@ -34,3 +34,11 @@ All rules of form
 //  	outcomes:["moveForward"]
 // }
 
+// RULES //
+
+var r1 = [
+{ 
+	conditions:["state=0", "north.north/state=0", "<2/neighbors/state=2"], 
+ 	outcomes:["moveForward"]
+}
+];

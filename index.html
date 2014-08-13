@@ -1,25 +1,32 @@
 <html> 
 <head> 
 	<title>ProtoLife</title> 
-	<style>
-		
-		body {
-			margin: 0;
-		}
-
-		canvas { 
-			width: 100%; 
-			height: 100% 
-		}
-
-
-	</style> 
+	<link rel="stylesheet" type="text/css" href="styles.css"> 
 </head> 
 <body> 
 
-<div>
+<div class="menu">
+	<h3>Controls</h3>
 	<button class="start">Start</button></br>
 	<button class="reset">Reset</button></br>
+	<h3>Generate Environment</h3>
+	<button class="random">Random</button></br>
+	<button class="locked">Locked In</button></br>
+	<button class="gameoflife">Game of Life</button></br>
+	<h3>Prepared Machines</h3>
+		Dummy
+	<input type="radio" name="bot"></br>
+		Loner
+	<input type="radio" name="bot"></br>
+		Over
+	<input type="radio" name="bot"></br>
+		Around
+	<input type="radio" name="bot"></br>
+		Up
+	<input type="radio" name="bot"></br>
+		Printer
+	<input type="radio" name="bot"></br>
+
 </div>
 
 
@@ -27,17 +34,13 @@
 <script src="js-help/three.min.js"></script> 
 <script src="js-help/OrbitControls.js"></script>
 <!-- <script src="http://underscorejs.org/underscore-min.js"></script> -->
-<script src="state.js"></script>
-<script src="block.js"></script>
-<script src="rules.js"></script>
-<script src="interpreter.js"></script>
-<!-- <script src="world.js"></script> -->
-<script src="test.js"></script>
-<script type="text/javascript">
-	
-
-
-
-</script>
+<script src="domain-logic/state.js"></script>
+<script src="domain-logic/block.js"></script>
+<script src="domain-logic/rules.js"></script>
+<script src="domain-logic/interpreter.js"></script>
+<!-- <script src="ui/ui-init.js"></script>
+<script src="ui/ux-events.js"></script> -->
+<script src="world.js"></script>
+<!-- <script src="test.js"></script> -->
 </body> 
 </html>
