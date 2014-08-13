@@ -88,6 +88,7 @@ var Test = function() {
 	}
 	];
 
+	// tested
 	this.r6 = [
 	{ 
 		conditions:["state=0"], 
@@ -105,9 +106,10 @@ var Test = function() {
 
 	// RELATION RULES
 
+	// tested
 	this.r7 = [
 	{ 
-		conditions:["north/state=0"], 
+		conditions:["state=0", "seeNorth"], 
 	 	outcomes:["moveUp"]
 	}
 	];

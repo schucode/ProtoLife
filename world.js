@@ -104,7 +104,7 @@ var addBlockRequest = function( locality, key ) {
 			color = "0x000000";		// black
 			break;
 		case 50: 								// numeral 2
-			rules = test.r6;						// walk forward
+			rules = test.r7;						// walk forward
 			color = "0x00AA00";		// dark green				
 			break;
 		// case 51: 								// numeral 3

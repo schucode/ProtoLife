@@ -78,7 +78,10 @@
 		var evaluateBlock = function(single_block, condition) {
 			var property = getProperty(condition);
 			var required_value = getRequiredPropertyValue(condition);
-			return (single_block[property] == required_value)
+			if (single_block[property] instanceof Function) 
+				return single_block[property]();
+			else 
+				return (single_block[property] == required_value)
 		}
 
 		// returns true if a collection satisfies a condition
