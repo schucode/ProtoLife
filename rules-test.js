@@ -114,6 +114,7 @@ var Test = function() {
 	}
 	];
 
+	// tested
 	this.r8 = [
 	{ 
 		conditions:["seeSouth=true"], 
@@ -121,6 +122,7 @@ var Test = function() {
 	}
 	];
 
+	// tested
 	this.r9 = [
 	{ 
 		conditions:["seeSouth=true"], 
@@ -180,6 +182,7 @@ var Test = function() {
 	];
 
 	// MAKES THE adidas symbol
+	// tested
 	this.r17 = [
 	{ 
 		conditions:["state=0", "seeSouth=false"], 
@@ -193,12 +196,35 @@ var Test = function() {
 
 	// COLLECTIONS TESTING
 
+	// tested
 	this.r18 = [
 	{ 
 		conditions:["state=0", "=2/neighbors/state=0"], 
 	 	outcomes:["moveUp"]
 	}
 	];
+
+	// tested
+	this.r19 = [
+	{ 
+		conditions:["state=0", ">4/neighbors/state=0"], 
+	 	outcomes:["moveUp"]
+	}
+	];
+
+	// tested
+	this.r20 = [
+	{ 
+		conditions:["state=0", "<2/neighbors/state=0"], 
+	 	outcomes:["moveUp"]
+	}
+	];
+
 }
 
 var test = new Test(); 
+
+
+
+
+
