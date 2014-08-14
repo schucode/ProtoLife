@@ -8,9 +8,9 @@ canvas {
 }
 
 .menu {
-	width: 200px;
-	height: 700px;
-	background: blue;
+	width: 100px;
+	height: 100px;
+	background: black;
 	position: fixed;
 }
 

@@ -36,50 +36,18 @@ All rules of form
 
 // RULES //
 
-// tested successful
-// var r1 = [ 
-// { 
-// 	conditions:["state=0"], 
-//  	outcomes:["moveNorth"]
-// }
-// ];
+var Rules = {
 
+fun : [
+	{ 
+		conditions:["state=0", "seeSouth=false"], 
+	 	outcomes:["moveSouth"]
+	},
+	{ 
+		conditions:["state=0", "seeSouth=true"], 
+	 	outcomes:["makeBlock", "moveUp"]
+	}
+	]
 
-// var r2 = [
-// { 
-// 	conditions:["north/state=0"], 
-//  	outcomes:["moveSouth"]
-// }
-// ];
+}
 
-
-// var r3 = [
-// { 
-// 	conditions:["north.north/state=0"], 
-//  	outcomes:["moveEast"]
-// }
-// ];
-
-
-// var r4 = [
-// { 
-// 	conditions:[">5/neighbors/state=0"], 
-//  	outcomes:["moveWest"]
-// }
-// ];
-
-
-// var r4 = [
-// { 
-// 	conditions:["<2/neighbors/state=0"], 
-//  	outcomes:["moveUp"]
-// }
-// ];
-
-
-// var r5 = [
-// { 
-// 	conditions:["state=0", "north/state=0", "north.north/state=0", "<2/neighbors/state=0"], 
-//  	outcomes:["moveDown"]
-// }
-// ];
