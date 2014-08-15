@@ -56,6 +56,14 @@
 		scene.add(floor);
 	}
 
+	var conjureGridFloor = function() {
+	var gridXZ = new THREE.GridHelper(10000, scale);
+	gridXZ.setColors( new THREE.Color(0x006600), new THREE.Color(0x006600) );
+	gridXZ.position.set( 0,0.5,0 );
+	scene.add(gridXZ);
+	return gridXZ;
+}
+
 	// Defines and returns the cubic spaces that populate the interactive grid
 	var createLocality = function(x,z) {
 		//var geometry = new THREE.BoxGeometry( scale, scale, scale );
@@ -85,6 +93,7 @@
 	// Create the underlying, interactive grid
 	var setUpGraphics = function() {
 		//conjureFloor();
+		var viewGrid = conjureGridFloor();
 		delineateGrid();
 	}
 
@@ -276,8 +285,8 @@
 
 
 	var createWorldBlock = function(block) {
-		//var geo = new THREE.BoxGeometry(scale, scale, scale);
-		var geo = new THREE.SphereGeometry(2.5);
+		var geo = new THREE.BoxGeometry(scale, scale, scale);
+		//var geo = new THREE.SphereGeometry(2.5);
 		var mat = new THREE.MeshBasicMaterial();  
 		var mesh = new THREE.Mesh(geo, mat);
 		block.rep = mesh;

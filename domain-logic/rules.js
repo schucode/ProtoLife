@@ -38,9 +38,9 @@ All rules of form
 
 var RuleSets = {
 
-r1 : [],
-
-r2 : [
+r1 : [],	// green
+	
+r2 : [		// pink
 	{ 
 		conditions:["state=0", "seeSouth=false"], 
 	 	outcomes:["moveSouth"]
@@ -52,7 +52,7 @@ r2 : [
 	}
 ],
 
-r3 : [
+r3 : [		// red
 	{ 
 		conditions:["state=0", "seeNorth=false"], 
 	 	outcomes:["moveNorth"]
@@ -64,38 +64,19 @@ r3 : [
 	}
 ],
 
-r4 : [ 
+r4 : [ 		// blue
 	{ 
-		conditions:["state=0"], 
+		conditions:["state=0", "seeEast=true"], 
+	 	outcomes:["makeBlock", "moveNorth"]
+	}
+],
+
+r5 : [		// orange
+	{ 
+		conditions:["state=0", "seeWest=false"], 
 	 	outcomes:["moveNorth"]
 	}
-],
-
-r5 : [
-	{ 
-		conditions:["state=0", "seeNorth=true"], 
-	 	outcomes:["moveUp"]
-	}
-],
-
-r6 : [
-	{ 
-		conditions:["state=0"], 
-	 	outcomes:["makeBlock", "moveWest"]
-	}
-],
-
-r7 : [
-	//TODO
-],
-
-r8 : [
-	//TODO
-],
-
-r9 : [
-	//TODO
-],
+]
 
 
 }

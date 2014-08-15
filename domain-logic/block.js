@@ -103,4 +103,8 @@ var Block = function() {
 		State.addBlock([], this.x, this.y, this.z, "0x3FE12D");
 	};
 
+	this.makeRed = function() {
+		State.addBlock(RuleSets.r3, this.x, this.y, this.z, keyColors.k3);
+	};
+
 };
