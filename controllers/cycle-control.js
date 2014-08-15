@@ -7,6 +7,7 @@ var cycleControl = {
 
 	takeStep: function() {
 		State.updateState();
+		State.garbageControl();
 		translateState(State);
 	},
 

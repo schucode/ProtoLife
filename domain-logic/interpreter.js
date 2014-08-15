@@ -20,7 +20,6 @@
 		 				updateIntrinsic(change);		// change property
 				}
 			}
-			console.log(block);
 		}
 
 		var performAction = function(change) {

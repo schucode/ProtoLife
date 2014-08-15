@@ -329,6 +329,17 @@ var deleteWorldMember = function( locality ) {
 	thingsInTheWorld.splice(thingsLocal, 1);
 }
 
+var deleteWorldMemberByBlock = function ( block ) {
+	for (var i in thingsInTheWorld) {
+		if (thingsInTheWorld[i] == block.rep) {
+			thingsLocal = i;
+			scene.remove(thingsInTheWorld[i]);
+			break;
+		}
+	}
+	thingsInTheWorld.splice(thingsLocal, 1);
+}
+
 /////// END REFACTOR  /////// END REFACTOR  /////// END REFACTOR  /////// END REFACTOR  /////// END REFACTOR  /////// END REFACTOR 
  
 render = function () {
