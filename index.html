@@ -6,12 +6,16 @@
 <body> 
 
 
-<div class="controls">
-	<button class="start">Start</button></br>
+<div class="controls startcontrol">
+	<button class="start">Start</button>
 </div>
 
-<div class="controls controls2">
-	<button class="reset">Reset</button></br>
+<div class="controls resetcontrol">
+	<button class="reset">Reset</button>
+</div>
+
+<div class="controls instructcontrol">
+	<button class="instruct">Intructions</button>
 </div>
 
 <div class="menu">
@@ -45,11 +49,25 @@
 	<div id="current"></div>
 </div>
 
-<!-- <div class="instruct">
+<div class="instructions">
 	<h2>Welcome to ProtoLife!</h2>
-	<h3>What's Going On?</h3>
-	<p>Put blocks'
-</div> -->
+	<div class="how">
+		<h2>How?</h2>
+		<p>1. Select a color with your keypad</p>
+		<p>2. Click on the grid with the mouse</p>
+		<p>3. Click 'd' and then click on block's to delete</p>
+		<p>3. Press start and watch!</p>
+	</div>
+	<div class="what">
+		<h2>What?</h2>
+		<p>Each block behaves by following a specific set of rules. They may
+			depend upon its own instrinsic properties or upon the world's properties. 
+	</div>
+	<div class="instructmenu">
+		<button id="play">Play</button>
+		<button id="next">Next</button>
+	</div>
+</div>
 
 <script src="public/vendor/three.min.js"></script> 
 <script src="public/vendor/OrbitControls.js"></script>
@@ -57,6 +75,7 @@
 <script src="domain-logic/block.js"></script>
 <script src="domain-logic/rules.js"></script>
 <script src="domain-logic/interpreter.js"></script>
+<script src="ui/intro.js"></script>
 <script src="ui/world.js"></script>
 <script src="ui/menu.js"></script>
 <script src="controllers/cycle-control.js"></script>
