@@ -100,7 +100,7 @@ var Block = function() {
 	// ACTIONS on ENVIRONMENT
 
 	this.makeBlock = function() {
-		State.addBlock([], this.x, this.y, this.z, "0x000000");
+		State.addBlock([], this.x, this.y, this.z, "0x3FE12D");
 	};
 
 };

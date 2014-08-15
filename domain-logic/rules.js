@@ -36,18 +36,67 @@ All rules of form
 
 // RULES //
 
-var Rules = {
+var RuleSets = {
 
-fun : [
+r1 : [],
+
+r2 : [
 	{ 
 		conditions:["state=0", "seeSouth=false"], 
 	 	outcomes:["moveSouth"]
 	},
+
 	{ 
 		conditions:["state=0", "seeSouth=true"], 
 	 	outcomes:["makeBlock", "moveUp"]
 	}
-	]
+],
+
+r3 : [
+	{ 
+		conditions:["state=0", "seeNorth=false"], 
+	 	outcomes:["moveNorth"]
+	},
+	
+	{ 
+		conditions:["state=0", "seeNorth=true"], 
+	 	outcomes:["makeBlock", "moveUp"]
+	}
+],
+
+r4 : [ 
+	{ 
+		conditions:["state=0"], 
+	 	outcomes:["moveNorth"]
+	}
+],
+
+r5 : [
+	{ 
+		conditions:["state=0", "seeNorth=true"], 
+	 	outcomes:["moveUp"]
+	}
+],
+
+r6 : [
+	{ 
+		conditions:["state=0"], 
+	 	outcomes:["makeBlock", "moveWest"]
+	}
+],
+
+r7 : [
+	//TODO
+],
+
+r8 : [
+	//TODO
+],
+
+r9 : [
+	//TODO
+],
+
 
 }
 

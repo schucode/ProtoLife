@@ -21,46 +21,12 @@ var center = new THREE.Mesh(centerGeo, centerMaterial);
 scene.add(center);
 
 
-//scene.fog = new THREE.FogExp2( 0x000000, .0025);
-
-
-renderer.shadowMapEnabled = true;
-// to antialias the shadow
-// renderer.shadowMapSoft = true;
-
-// var light = new THREE.SpotLight(0xffffff);
-// light.castShadow = true;
-// light.shadowDarkness = 0.5; // It is the opacity of the shadow. 0 means no shadow, 1 means pure back shadow.
-// light.shadowCameraVisible = true;
-
-//scene.add(light);
-
-// spotlight #1 -- yellow, dark shadow
-var placeSpotLight = function(x, y, z) {
-	var spotlight = new THREE.SpotLight(0xffffff);
-	spotlight.position.set(x, y, z);
-	spotlight.shadowCameraVisible = true;
-	spotlight.shadowDarkness = 0.95;
-	spotlight.intensity = 2;
-	// must enable shadow casting ability for the light
-	spotlight.castShadow = true;
-
-	// var lightTarget = new THREE.Object3D();
-	// lightTarget.position.set(x,0,z);
-	// scene.add(lightTarget);
-	// spotlight.target = lightTarget;
-
-	scene.add(spotlight);
-}
-	
-placeSpotLight(300, 300, 300);
-placeSpotLight(0, 500, -100);
 
 
 ////////////////////////// WORLD CREATION //////////////////////////
 
 // CONSTANTS
-var scale = 10;  // height, width, and depth of grid cube
+var scale = 5;  // height, width, and depth of grid cube
 var width = 40;	// width of grid in cubes
 var depth = 40;  // depth of grid in cubes
 
@@ -69,7 +35,7 @@ var floorProperties = { color: 0xC0C0C0, 				// pink
 
 var localityProperties = { color: 0xFF0000, 			// gray 
 													 wireframe: false,
-													 visible: true}				// will be false after testing
+													 visible: false}				// will be false after testing
 
 // VARIABLES
 
@@ -81,33 +47,23 @@ var thingsInTheWorld = [];
 
 // Defines and adds opaque floor 
 var conjureFloor = function() {
-	var geometry = new THREE.PlaneGeometry( 100, 100 );
-	var material = new THREE.MeshLambertMaterial( floorProperties ); 
+	var geometry = new THREE.PlaneGeometry( width*scale, depth*scale );
+	var material = new THREE.MeshBasicMaterial( floorProperties ); 
 	var floor = new THREE.Mesh( geometry, material );
-	//floor.castShadow = true;
-	floor.receiveShadow = true;																// SHADOW STUFF
 	floor.position.y = -5;
 	floor.rotation.x = -Math.PI / 2;
 	scene.add(floor);
 }
 
-var conjureFloor2 = function() {
-	var gridXZ = new THREE.GridHelper(1000, 10);
-	gridXZ.setColors( new THREE.Color(0x006600), new THREE.Color(0x006600) );
-	gridXZ.position.set( 0,0,0 );
-	scene.add(gridXZ);
-}
-
 // Defines and returns the cubic spaces that populate the interactive grid
 var createLocality = function(x,z) {
 	//var geometry = new THREE.BoxGeometry( scale, scale, scale );
-	var geometry = new THREE.PlaneGeometry(scale, scale);
+	var geometry = new THREE.BoxGeometry(scale, scale, scale);
 	var material = new THREE.MeshBasicMaterial( localityProperties );
 	var locality = new THREE.Mesh( geometry, material );
 	locality.name = [x,z];
 	// the first term enqures that there is no space inbetween blocks.
 	// the second term centers the grid 
-	locality.rotation.x = -Math.PI / 2;	
 	locality.position.x = x*scale - (((width-1)/2)*scale);
 	locality.position.z = z*scale - (((depth-1)/2)*scale);
 	return locality
@@ -127,7 +83,7 @@ var delineateGrid = function() {
 
 // Create the underlying, interactive grid
 var setUpGraphics = function() {
-	conjureFloor2();
+	//conjureFloor();
 	delineateGrid();
 }
 
@@ -144,35 +100,32 @@ var addBlockRequest = function( locality, key ) {
 
 	switch(key) {
 		case 49: 								// numeral 1
-			rules = []; 					// dumb block
-			color = "0x000000";		// black
+			rules = RuleSets.r1; 	
+			color = "0x3FE12D";			// black
 			break;
 		case 50: 								// numeral 2
-			rules = Rules.fun;						// walk forward
-			color = "0x00AA00";		// dark green				
+			rules = RuleSets.r2;						
+			color = "0xCD31AB";			// color				
 			break;
-		// case 51: 								// numeral 3
-		// 	rules = r3;	// undefined
-		// 	color = "0x006600";	// less dark green						
-		// 	break;
-		// case 52: 								// numeral 4
-		// 	 rules = r3;	// undefined
-		// 	 color = "0x009900";	// etc.		
-		// 	break;
-		// case 53: 								// numeral 5
-		// 	// rules = someRules;	// undefined
-		// 	 color = "0x00CC00";							
-		// 	break;
-		// case 54: 								// numeral 6
-		// 	// rules = someRules;	// undefined
-		// 	 color = "0x00ff00";							
-		// 	break;
+		case 51: 								// numeral 3
+			rules = RuleSets.r3	
+			color = "0xF02900";			// color						
+			break;
+		case 52: 								// numeral 4
+			 rules = RuleSets.r4;	
+			 color = "0x1B98DC";		// color	
+			break;
+		case 53: 								// numeral 5
+			 rules = RuleSets.r5;	
+			 color = "0xF99928";		// color						
+			break;
 		default:
 			console.log("no block type");
 			return false;
 			break;
 	}
-	State.addBlock(rules, x, 0, z, color);
+	if (!State.retrieveBlockByPosition(x, 0, z))	// does not allow the user to place multiple blocks in the same place
+		State.addBlock(rules, x, 0, z, color);
 	translateState(State);
 }
 
@@ -196,6 +149,7 @@ var UX = {
 	key: undefined,
 
 	setKey: function(keyCode) {
+		console.log(UX.key);
 		UX.key = keyCode;
 	},
 
@@ -249,7 +203,7 @@ window.addEventListener( 'click', UX.clickBlocks, false );
 
 window.addEventListener( 'keydown', function(e) {UX.setKey(e.keyCode)}, false );
 
-window.addEventListener( 'keyup',  UX.setKey(undefined), false);
+window.addEventListener( 'keyup',  function(e) {UX.setKey(undefined)}, false);
 
 
 
@@ -270,8 +224,6 @@ var ConvertToMesh = {
 									y: function(mesh, value) {
 										var convert = value*scale;
 										mesh.position.y = convert;
-										// add a bit to y to get the block on top of the grid
-										mesh.position.y += scale/2;
 									},
 									color: function(mesh, value) {
 										mesh.material.color.setHex( value );
@@ -280,11 +232,10 @@ var ConvertToMesh = {
 
 
 var createWorldBlock = function(block) {
-	var geo = new THREE.BoxGeometry(scale, scale, scale);
-	var mat = new THREE.MeshLambertMaterial();
-	//var mat = new THREE.MeshBasicMaterial();  
+	//var geo = new THREE.BoxGeometry(scale, scale, scale);
+	var geo = new THREE.SphereGeometry(2.5);
+	var mat = new THREE.MeshBasicMaterial();  
 	var mesh = new THREE.Mesh(geo, mat);
-	mesh.castShadow = true; 										// SHADOW STUFF
 	block.rep = mesh;
 	mesh.block = block;
 	thingsInTheWorld.push(block.rep);

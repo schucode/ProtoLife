@@ -1,30 +1,63 @@
 <html> 
 <head> 
 	<title>ProtoLife</title> 
-	<link rel="stylesheet" type="text/css" href="styles.css"> 
+	<link rel="stylesheet" type="text/css" href="public/css/styles.css"> 
 </head> 
 <body> 
 
-<div class="menu">
-	<div>
-		<button class="start">Start</button></br>
-		<button class="reset">Reset</button></br>
-	</div>
+
+<div class="controls">
+	<button class="start">Start</button></br>
 </div>
 
+<div class="controls controls2">
+	<button class="reset">Reset</button></br>
+</div>
 
+<div class="menu">
+	<table>
+		<tr>
+		  <td>Key</td>
+		  <td>Color</td> 
+		</tr>
+		<tr>
+		  <td>1</td>
+		  <td><div class="color-op green"></div></td> 
+		</tr>
+		<tr>
+		  <td>2</td>
+		  <td><div class="color-op pink"></div></td> 
+		</tr>
+		<tr>
+		  <td>3</td>
+		  <td><div class="color-op red"></div></td> 		  
+		</tr>
+		<tr>
+		  <td>4</td>
+		  <td><div class="color-op blue"></div></td> 	  
+		</tr>
+		<tr>
+		  <td>5</td>
+		  <td><div class="color-op orange"></div></td> 
+		</tr>
+	</table>
+</div>
 
-<script src="vendor/three.min.js"></script> 
-<script src="vendor/OrbitControls.js"></script>
+<!-- <div class="instruct">
+	<h2>Welcome to ProtoLife!</h2>
+	<h3>What's Going On?</h3>
+	<p>Put blocks'
+</div> -->
+
+<script src="public/vendor/three.min.js"></script> 
+<script src="public/vendor/OrbitControls.js"></script>
 <script src="domain-logic/state.js"></script>
 <script src="domain-logic/block.js"></script>
 <script src="domain-logic/rules.js"></script>
 <script src="domain-logic/interpreter.js"></script>
-<!-- <script src="world.js"></script>
- --><script src="world-test.js"></script>
-<script src="cycle-control.js"></script>
-<!-- <script src="rules-test.js"></script>
- --><script src="menu.js"></script>
+<script src="ui/world.js"></script>
+<script src="ui/menu.js"></script>
+<script src="controllers/cycle-control.js"></script>
 
 <!-- <script src="test.js"></script> -->
 </body> 

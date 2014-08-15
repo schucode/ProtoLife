@@ -6,7 +6,8 @@ var State = {
 	addBlock: function(rules, x, y, z, color) {
 		var block = new Block();
 		block.rules = rules;
-		block.color = parseInt(color);
+		//block.color = parseInt(color); // doesn't work on 0x009900 e.g. 
+		block.color = color;
 		block.x = x;
 		block.y = y;
 		block.z = z;

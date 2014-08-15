@@ -1,0 +1,73 @@
+body {
+	margin: 0;
+}
+
+canvas { 
+	width: 100%; 
+	height: 100% 
+}
+
+.controls {
+	color: white;
+	background: black;
+	position: fixed;
+	width: 80px;
+	height: 40px;
+	border: 3px solid white;
+	border-radius: 10px;
+	top: 10px;
+}
+
+.controls2 {
+	left: 100px;
+}
+
+button {
+	width: 75px;
+	height: 35px;
+	border:0;
+	outline: none;
+	background: none;
+	color: white;
+	font-family: "Futura";
+	font-size: 20px;
+}
+
+.menu {
+	position: fixed;
+	top: 70px;
+	border: 3px solid white;
+	border-radius: 10px;
+}
+
+table {
+	color: white;
+	font-family: "Futura";
+	text-align: center;
+}
+
+.color-op {
+	width: 25px;
+	height: 25px;
+	background-color: white;
+}
+
+.red {
+	background: #F02900;
+}
+
+.pink {
+	background: #CD31AB;
+}
+
+.green {
+	background: #3FE12D;
+}
+
+.blue {
+	background: #1B98DC;
+}
+
+.orange {
+	background: #F99928;
+}

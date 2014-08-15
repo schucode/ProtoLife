@@ -21,3 +21,4 @@ resetElem[0].addEventListener('click', function() {
 		translateState(State);
 	}	
 }, false)
+
