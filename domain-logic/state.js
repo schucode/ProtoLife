@@ -51,5 +51,16 @@ var State = {
 		State.population = [];
 	}
 
+	// garbageControl: function() {
+	// 	for (var i in State.population) {
+	// 		var block = State.population[i];
+	// 		if (	 block.x > 1000 
+	// 				|| block.y > 1000
+	// 				|| block.z > 1000) {
+				
+	// 		}
+	// 	}
+	// }
+
 }
 

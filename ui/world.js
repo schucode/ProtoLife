@@ -91,6 +91,13 @@ var setUpGraphics = function() {
 
 ////////////////////////// WORLD CHANGES //////////////////////////
 
+var keyColors = {
+	k1: "0x3FE12D",
+	k2: "0xCD31AB",
+	k3: "0xF02900",
+	k4: "0x1B98DC",
+	k5: "0xF99928"
+}
 
 var addBlockRequest = function( locality, key ) {
 	var x = locality[0];
@@ -101,23 +108,23 @@ var addBlockRequest = function( locality, key ) {
 	switch(key) {
 		case 49: 								// numeral 1
 			rules = RuleSets.r1; 	
-			color = "0x3FE12D";			// black
+			color = keyColors.k1;			// black
 			break;
 		case 50: 								// numeral 2
 			rules = RuleSets.r2;						
-			color = "0xCD31AB";			// color				
+			color = keyColors.k2;			// color				
 			break;
 		case 51: 								// numeral 3
 			rules = RuleSets.r3	
-			color = "0xF02900";			// color						
+			color = keyColors.k3;			// color						
 			break;
 		case 52: 								// numeral 4
 			 rules = RuleSets.r4;	
-			 color = "0x1B98DC";		// color	
+			 color = keyColors.k4;		// color	
 			break;
 		case 53: 								// numeral 5
 			 rules = RuleSets.r5;	
-			 color = "0xF99928";		// color						
+			 color = keyColors.k5;		// color						
 			break;
 		default:
 			console.log("no block type");
@@ -147,10 +154,33 @@ var deleteBlockRequest = function( locality, key  ) {
 var UX = {
 
 	key: undefined,
+	easyPut: false,
 
 	setKey: function(keyCode) {
-		console.log(UX.key);
 		UX.key = keyCode;
+		switch (this.key) {
+			case 49: 
+				setCurrentColor(keyColors.k1);
+				break;
+			case 50:
+				setCurrentColor(keyColors.k2);	
+				break;
+			case 51:
+				setCurrentColor(keyColors.k3);
+				break;
+			case 52:
+				setCurrentColor(keyColors.k4);
+				break; 
+			case 53:
+				setCurrentColor(keyColors.k5);
+				break;
+			case 68:
+				showDeleteSign();
+				break;
+			default: 
+				setCurrentColor("#000000");
+				break;
+		}
 	},
 
 	// For eliminating redundant code in Ux methods
@@ -187,7 +217,6 @@ var UX = {
 		var raycaster = UX.preface(e);
 		intersects = raycaster.intersectObjects( thingsInTheWorld );
 		if (intersects.length > 0) {
-			//var locality = intersects[0].object.name; // name is position
 			var locality = [intersects[0].object.block.x, intersects[0].object.block.z];
 			deleteBlockRequest( locality, UX.key );
 		}
@@ -195,17 +224,31 @@ var UX = {
 
 }
 
-window.addEventListener( 'mousemove', UX.helpSelect, false );
+window.addEventListener( 'mousemove', function(e) {
+	UX.helpSelect(e);
+	if ( UX.easyPut ) {
+		if ( UX.key != 68 ) // if the key is not the delete key, keycode = 68
+			UX.clickGrid(e);	// make a clock
+		else 								// if it is
+			UX.clickBlocks(e)	// delete
+	}
+}, false );
 
 window.addEventListener( 'click', UX.clickGrid, false );
 
 window.addEventListener( 'click', UX.clickBlocks, false );
 
-window.addEventListener( 'keydown', function(e) {UX.setKey(e.keyCode)}, false );
+window.addEventListener( 'keydown', function(e) {
+	if (e.keyCode != 83) // 's' is special; it is used for easy-placement
+		UX.setKey(e.keyCode)
+	else
+		UX.easyPut = true;
+}, false );
 
-window.addEventListener( 'keyup',  function(e) {UX.setKey(undefined)}, false);
-
-
+window.addEventListener( 'keyup', function(e) { 
+	if (e.keyCode == 83) // 's' is special; it is used for easy-placement
+		UX.easyPut = false;
+}, false );
 
 
 ////////////////////////// STATE TRANSLATION //////////////////////////
