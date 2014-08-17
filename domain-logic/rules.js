@@ -42,7 +42,7 @@ r1 : [],	// green
 	
 r2 : [		// pink
 	{ 
-		conditions:["state=0", "seeSouth=false"], 
+		conditions:["state=0", "seeEast=false"], 
 	 	outcomes:["moveSouth"]
 	},
 

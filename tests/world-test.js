@@ -61,7 +61,6 @@ var placeSpotLight = function(x, y, z) {
 }
 	
 placeSpotLight(700, 700, 700);
-
 placeSpotLight(-350, 700, 700);
 
 

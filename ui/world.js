@@ -8,9 +8,9 @@
 
 	var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-	camera.position.z = 45;
-	camera.position.x = 45;
-	camera.position.y = 15;
+	camera.position.z = 100;
+	camera.position.x = 100;
+	camera.position.y = 100;
 
 	var projector = new THREE.Projector();
 	var mouseVector = new THREE.Vector3();
@@ -21,13 +21,21 @@
 	var center = new THREE.Mesh(centerGeo, centerMaterial);
 	scene.add(center);
 
+	var dir = new THREE.Vector3( 1, 0, 0 );
+	var origin = new THREE.Vector3( 0, 0, 0 );
+	var length = 50;
+	var hex = 0xff0000;
+
+	var arrowHelper = new THREE.ArrowHelper( dir, origin, length, hex );
+	scene.add( arrowHelper );
+
 
 
 
 	////////////////////////// WORLD CREATION //////////////////////////
 
 	// CONSTANTS
-	var scale = 5;  // height, width, and depth of grid cube
+	var scale = 50;  // height, width, and depth of grid cube
 	var width = 40;	// width of grid in cubes
 	var depth = 40;  // depth of grid in cubes
 
@@ -46,20 +54,10 @@
 
 	// MAKE WORLD //
 
-	// Defines and adds opaque floor 
-	var conjureFloor = function() {
-		var geometry = new THREE.PlaneGeometry( width*scale, depth*scale );
-		var material = new THREE.MeshBasicMaterial( floorProperties ); 
-		var floor = new THREE.Mesh( geometry, material );
-		floor.position.y = -5;
-		floor.rotation.x = -Math.PI / 2;
-		scene.add(floor);
-	}
-
 	var conjureGridFloor = function() {
 	var gridXZ = new THREE.GridHelper(10000, scale);
 	gridXZ.setColors( new THREE.Color(0x006600), new THREE.Color(0x006600) );
-	gridXZ.position.set( 0,0.5,0 );
+	gridXZ.position.set( 0,-2.5,0 );
 	scene.add(gridXZ);
 	return gridXZ;
 }
@@ -90,9 +88,37 @@
 		}
 	} 
 
+	renderer.shadowMapEnabled = true;
+	renderer.shadowMapSoft = true;
+
+	var light1 = new THREE.SpotLight(0xffffff);
+	light1.position.set(scale*10, scale*10, scale*10);
+	//light1.shadowCameraVisible = true;
+	light1.shadowDarkness = 0.95;
+	light1.intensity = 3;
+	light1.castShadow = true;
+	scene.add(light1);
+
+	var light2 = new THREE.SpotLight(0xffffff);
+	light2.position.set(-20*scale, -40*scale, 75*scale);
+	//light2.shadowCameraVisible = true;
+	light2.shadowDarkness = 0.95;
+	light2.intensity = .75;
+	light2.castShadow = true;
+	scene.add(light2);
+
+	var light3 = new THREE.SpotLight(0xffffff);
+	light3.position.set(0, 1000, 0);
+	//light3.shadowCameraVisible = true;
+	light3.shadowDarkness = 0.95;
+	light3.intensity = 5;
+	light3.castShadow = true;
+	scene.add(light3);
+	
+
 	// Create the underlying, interactive grid
 	var setUpGraphics = function() {
-		//conjureFloor();
+		//scene.fog = new THREE.Fog( 0x000000, 300, 5000);
 		var viewGrid = conjureGridFloor();
 		delineateGrid();
 	}
@@ -287,8 +313,11 @@
 	var createWorldBlock = function(block) {
 		var geo = new THREE.BoxGeometry(scale, scale, scale);
 		//var geo = new THREE.SphereGeometry(2.5);
-		var mat = new THREE.MeshBasicMaterial();  
+		//var mat = new THREE.MeshLambertMaterial();
+		var mat = new THREE.MeshPhongMaterial();  
 		var mesh = new THREE.Mesh(geo, mat);
+		//mesh.castShadow = true; 	// NEW
+		//mesh.receiveShadow = true;		 //NEW
 		block.rep = mesh;
 		mesh.block = block;
 		thingsInTheWorld.push(block.rep);
