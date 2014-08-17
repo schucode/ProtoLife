@@ -21,7 +21,7 @@
 	var center = new THREE.Mesh(centerGeo, centerMaterial);
 	scene.add(center);
 
-	var dir = new THREE.Vector3( 1, 0, 0 );
+	var dir = new THREE.Vector3( 0, 0, 1 );
 	var origin = new THREE.Vector3( 0, 0, 0 );
 	var length = 50;
 	var hex = 0xff0000;
@@ -144,23 +144,23 @@
 		switch(key) {
 			case 49: 								// numeral 1
 				rules = RuleSets.r1; 	
-				color = keyColors.k1;			// black
+				color = keyColors.k1;			// green
 				break;
 			case 50: 								// numeral 2
 				rules = RuleSets.r2;						
-				color = keyColors.k2;			// color				
+				color = keyColors.k2;			// pink				
 				break;
 			case 51: 								// numeral 3
 				rules = RuleSets.r3	
-				color = keyColors.k3;			// color						
+				color = keyColors.k3;			// red						
 				break;
 			case 52: 								// numeral 4
 				 rules = RuleSets.r4;	
-				 color = keyColors.k4;		// color	
+				 color = keyColors.k4;		// blue	
 				break;
 			case 53: 								// numeral 5
 				 rules = RuleSets.r5;	
-				 color = keyColors.k5;		// color						
+				 color = keyColors.k5;		// orange						
 				break;
 			default:
 				console.log("no block type");

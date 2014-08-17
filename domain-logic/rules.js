@@ -72,10 +72,6 @@ r4 : [ 		// blue
 ],
 
 r5 : [		// orange
-	{ 
-		conditions:["state=0", "seeWest=false"], 
-	 	outcomes:["moveNorth"]
-	}
 ]
 
 

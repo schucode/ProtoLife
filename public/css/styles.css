@@ -125,3 +125,72 @@ table {
 .orange {
 	background: #F99928;
 }
+
+.rule-edit {
+	position: fixed;
+	font-family: "Futura";
+	background-color: black;
+	color: white;
+	left: 100px;
+	top: 70px;
+	display: none;
+	height: 285px;
+	width: 300px;
+	border: 3px solid white;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.rule-edit button {
+	text-align: center;
+	height: 35px;
+	border: 1px solid white;
+	outline: none;
+	background: none;
+	border-radius: 10px;
+	color: white;
+	font-family: "Futura";
+	font-size: 15px;
+}
+
+.rule-edit button:hover {
+	background-color: red;
+}
+
+#displayarea {
+	position: fixed;
+	font-family: "Courier New";
+	background-color: black;
+	color: white;
+	left: 420px;
+	top: 70px;
+	display: none;
+	height: 630px;
+	width: 500px;
+	border: 3px solid white;
+	border-radius: 10px;
+}
+
+#displayarea h4 {
+	text-align: center;
+}
+
+#colorprogram {
+	height: 25px;
+	width: 125px;
+	margin: 0 auto;
+}
+
+#dictionary {
+	position: fixed;
+	font-family: "Courier New";
+	background-color: black;
+	color: white;
+	left: 940px;
+	top: 70px;
+	display: none;
+	height: 630px;
+	width: 300px;
+	border: 3px solid white;
+	border-radius: 10px;
+}

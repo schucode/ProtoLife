@@ -5,6 +5,7 @@
 </head> 
 <body> 
 
+<!-- START AND STOP CONTROLS -->
 
 <div class="controls startcontrol">
 	<button class="start">Start</button>
@@ -17,6 +18,8 @@
 <div class="controls instructcontrol">
 	<button class="instruct">Intructions</button>
 </div>
+
+<!-- MENU WITH COLORS  -->
 
 <div class="menu">
 	<table>
@@ -49,6 +52,8 @@
 	<div id="current"></div>
 </div>
 
+<!-- INSTRUCTIONS OF HOW TO PLAY: SET TO DISPLAY:NONE WHEN YOU CLICK PLAY -->
+
 <div class="instructions">
 	<h2>Welcome to ProtoLife!</h2>
 	<div class="how">
@@ -60,14 +65,41 @@
 	</div>
 	<div class="what">
 		<h2>What?</h2>
-		<p>Each block behaves by following a specific set of rules. They may
-			depend upon its own instrinsic properties or upon the world's properties. 
+		<p>Each block behaves according to a set of rules that can be specified. Click on the colored squares to specify the rules of a block. Read the documentation to see what rules are allowed. 
 	</div>
 	<div class="instructmenu">
 		<button id="play">Play</button>
 		<button id="next">Next</button>
 	</div>
 </div>
+
+<!-- EDITING AREA FOR RULES. STARTS OFF AS 
+DISPLAY:NONE -->
+
+<div class="rule-edit">
+	<span>Color</span><br/>
+	<div id="colorprogram"></div>
+	<span>Conditions</span><br/>
+	<textarea id="conditions" rows="4" cols="35"></textarea><br/>
+	<span>Outcomes</span><br/>
+	<textarea id="outcomes" rows="4" cols="35"></textarea><br/><br/>
+	<button id="done">Done</button>
+	<button id="setRules">Add Rule</button>
+	<button id="clearRules">Clear Rules</button>
+</div>
+
+<!-- DISPLAY RULES -->
+
+<div id="displayarea">
+	<h4>Program</h4>
+	<div id="displayRules">
+	</div>
+</div>
+
+<!-- DICTIONARY OF RULE OPTIONS. STARTS OFF AS DISPLAY:NONE -->
+
+
+
 
 <script src="public/vendor/three.min.js"></script> 
 <script src="public/vendor/OrbitControls.js"></script>
