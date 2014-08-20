@@ -107,11 +107,11 @@ var thingsInTheWorld = [];
 // Defines and adds opaque floor 
 var conjureFloor = function() {
 	var geometry = new THREE.PlaneGeometry( 10000, 10000 );
-	var material = new THREE.MeshLambertMaterial( floorProperties ); 
+	var material = new THREE.MeshBasicMaterial( {color:0xffffff} ); 
 	var floor = new THREE.Mesh( geometry, material );
 	//floor.castShadow = true;
 	floor.receiveShadow = true;																// SHADOW STUFF
-	//floor.position.y = -5;
+	floor.position.y = -25;
 	floor.rotation.x = -Math.PI / 2;
 	scene.add(floor);
 }
@@ -153,8 +153,8 @@ var delineateGrid = function() {
 
 // Create the underlying, interactive grid
 var setUpGraphics = function() {
-	//conjureFloor();
-	conjureFloor2();
+	conjureFloor();
+	//conjureFloor2();
 	delineateGrid();
 }
 
@@ -315,14 +315,14 @@ var ConvertToMesh = {
 									color: function(mesh, value) {
 										console.log(value);
 										mesh.material.color.setHex( value );
-									}
+									}1
 }
 
 
 var createWorldBlock = function(block) {
 	var geo = new THREE.BoxGeometry(scale, scale, scale);
-	var mat = new THREE.MeshLambertMaterial();
-	//var mat = new THREE.MeshBasicMaterial();  
+	//var mat = new THREE.MeshLambertMaterial();
+	var mat = new THREE.MeshBasicMaterial();  
 	var mesh = new THREE.Mesh(geo, mat);
 	mesh.castShadow = true; 										// SHADOW STUFF
 	block.rep = mesh;

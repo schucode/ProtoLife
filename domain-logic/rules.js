@@ -25,14 +25,14 @@ All rules of form
 			(b) ">n" -> more than n members of the collection
 			(c) "<n" -> less than n members of the collection
 
-	OUTCOMES: 
-*/
 
-// var test_rules = [
-// { 
-// 	conditions:["state=0", "north.north/state=0", "<2/neighbors/state=2"], 
-//  	outcomes:["moveForward"]
-// }
+ var test_rules = [
+ { 
+ 	conditions:["state=0", "north.north/state=0", "<2/neighbors/state=2"], 
+  	outcomes:["moveForward"]
+}
+
+*/
 
 // RULES //
 

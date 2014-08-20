@@ -63,6 +63,11 @@ canvas {
 	display: none;
 }
 
+.what p {
+	width: 500px;
+	margin:0 auto;
+}
+
 .controls button {
 	height: 35px;
 	border:0;

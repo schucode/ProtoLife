@@ -16,19 +16,19 @@
 	var mouseVector = new THREE.Vector3();
 	var raycaster = projector.pickingRay( mouseVector.clone(), camera );
 
-	var centerGeo = new THREE.SphereGeometry(1);
+	var centerGeo = new THREE.SphereGeometry(5);
 	var centerMaterial = new THREE.MeshBasicMaterial({color: 0xFF0000});
 	var center = new THREE.Mesh(centerGeo, centerMaterial);
+	center.position.y = -20;
 	scene.add(center);
 
-	var dir = new THREE.Vector3( 0, 0, 1 );
-	var origin = new THREE.Vector3( 0, 0, 0 );
+	var dir = new THREE.Vector3( 0, 0, 2 );
+	var origin = new THREE.Vector3( 0, -20, 0 );
 	var length = 50;
 	var hex = 0xff0000;
 
 	var arrowHelper = new THREE.ArrowHelper( dir, origin, length, hex );
 	scene.add( arrowHelper );
-
 
 
 
@@ -39,12 +39,12 @@
 	var width = 40;	// width of grid in cubes
 	var depth = 40;  // depth of grid in cubes
 
-	var floorProperties = { color: 0xC0C0C0, 				// pink 
+	var floorProperties = { color: 0xC0C0C0, 				// 
 		                      side: THREE.DoubleSide}
 
-	var localityProperties = { color: 0xFF0000, 			// gray 
+	var localityProperties = { color: 0xFF0000, 			// red
 														 wireframe: false,
-														 visible: false}				// will be false after testing
+														 visible: false}				
 
 	// VARIABLES
 
@@ -57,7 +57,7 @@
 	var conjureGridFloor = function() {
 	var gridXZ = new THREE.GridHelper(10000, scale);
 	gridXZ.setColors( new THREE.Color(0x006600), new THREE.Color(0x006600) );
-	gridXZ.position.set( 0,-2.5,0 );
+	gridXZ.position.set( 0,-25,0 );
 	scene.add(gridXZ);
 	return gridXZ;
 }
@@ -118,9 +118,11 @@
 
 	// Create the underlying, interactive grid
 	var setUpGraphics = function() {
-		//scene.fog = new THREE.Fog( 0x000000, 300, 5000);
-		var viewGrid = conjureGridFloor();
+		scene.fog = new THREE.Fog( 0x000000, 2000, 5000);		
+		var viewGrid = conjureGridFloor();									
+
 		delineateGrid();
+
 	}
 
 

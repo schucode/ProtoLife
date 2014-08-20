@@ -1,1 +1,98 @@
-bots that make other bots
+ProtoLife
+
+Contents: 
+
+A. Description
+B. How to Play
+C. Understanding Block Rules
+D. What is the next version going to look like?
+
+
+A. Description: 
+
+	ProtoLife is a combination of John Conway's Game of Life and the concept of a Turing Machine put in three dimensions.Blocks are placed on a grid and given rules to follow like "If the block is right next to another block, it will go foward one step." With rules and enough blocks on the grid, interesting structures and behavior emerge. 
+
+
+B. How to Play:
+
+	0. Each kind of block is given a color (shown on the menu) and a set of rules. They are also assocaited with a number; click a number 1 - 5 to select what kind of block to make (an icon shows which block is currently being used).
+
+	1. If you move the mouse over the grid and click, a block is created; a red block assists in pointing out the position of where a block will be put. 
+
+	2. Click 'd' to go into delete mode (a skull and cross bones icon will show up). Anytime you click on a block in delete mode, it (suprise!) gets deleted. 
+
+	4. Hold down 's' to put blocks on the grid without having to click on the mouse. This is sort of like using a paint brush. 
+
+	5. Click on the colored squares on the left to set up rules for a block. You can clear the current rule set and add rules. The game comes with rules programmed in too so you can start playing without having to set rules up. 
+
+C. Block Rules 
+
+	0. Rules are JavaScript objects with the following form: 
+
+			{ 
+			conditions:[], 
+		 	outcomes:[]
+			}
+
+		The condition array specifies what conditions the block needs to satisfy in order to obey the rule and the outomes array tells the block exactly what to do when it does obey the rule. 
+
+	1. Conditions can look a few different ways. 
+
+	   (a) Property-Value Pair.
+
+	   The block reading the rule has the actual property-value pair.
+
+	   "state=0"
+	   "seeNorth=true"
+	   "seeSouth=false"
+	   "seeEast=true"
+	   "seeBelow=false" etc. 
+
+	   The idea is that the property, like 'state' equals the value, like '0'. 
+
+	   The 'see' properties mean that the block reading the property is immediately next to another block in the mentioned direction. 
+
+	   (b) Target & property-value pair
+
+	   In the first instance, we wanted to know whether the block reading the property had some particular value, but we can also define rules that mention other blocks that are in particular relationships to the block reading the property. For instance, we can check whether the block that is North of the reading block satisfies "state=0" or "seeEast=true". We can also combine these to ask if the block North of the block that is East of the reading block has such-and-such a property. For instance, the condition
+
+	   	"north.north.east.west/state=0"
+
+	  references the block west of the block that is east of the block that is north of the block that is north of the reading block and asks whether it is in state 0. 
+
+	  (c) Quantified statements about collections. 
+
+	  Finally, conditions can reference collections of blocks called neighborhoods and ask questions like, "Are there at least two blocks in state 0". For instance, 
+
+	  	"<3/north.neighbors/state=1"
+
+	 		"=2/neighbors/state=4"
+
+	 	The first condition states, "There are less than three block in state 1 in the northern block's neighborhood". The second states that "there are exactly two blocks in my neighborhood that are in state 4."
+
+	2. Outcomes are straiforward; they are simply what the block does when it implementes a rule. A few (self-explanatory) examples are: 
+
+		moveEast, moveWest, makeBlock, state=3
+
+
+D. What is the next version going to look like?
+
+	This is the first version of an idea that I'll be working on for a while, so there is a lot to be desired. Here are a few issues with the current version. 
+
+	1. The UI is tangled up and needs to be more modularized. Some of the code is convoluted and ugly, but time contraints precluded cleaning things. I ended up using code that was created simply to proove the viability of a concept instead of code that applied the concept in a clean way. 
+
+	2. There are a number of features like the ability to save rules that would have been nice, but I didn't add persistence this time around. 
+
+	3. The relational properties of a block like 'north' and 'south' can all be added to the block's prototype rather than to each individual block object. This would have saved memory. 
+
+	4. There are a number of interesting actions like 'rotate' and 'delete block' that I would like to add to the list of possible outcomes. 
+
+	5. I would really like to explore making a more robust language to describe rules. 
+
+	6. I implemented tests but didn't use a testing framework like Jasmine because of time constraints. I would like to use a testing framework next time around. 
+
+
+
+
+
+

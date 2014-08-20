@@ -55,12 +55,12 @@ var State = {
 
 		for (var i in State.population) {
 			var block = State.population[i];
-			if (	 block.x > 500 
-					|| block.x < -500
-					|| block.y > 500
-					|| block.y < -500
-					|| block.z > 500
-					|| block.z < -500) {
+			if (	 block.x > 200 
+					|| block.x < -200
+					|| block.y > 200
+					|| block.y < -200
+					|| block.z > 200
+					|| block.z < -200) {
 				State.deleteBlockByPosition(block.x, block.y, block.z);
 				deleteWorldMemberByBlock(block);
 			}
